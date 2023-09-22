@@ -1,2 +1,2 @@
-# php
-Docker image witp php, apache, xdebug, etc. Ready to develop for wordpress.
+# wp-html
+Docker image to build wp html
