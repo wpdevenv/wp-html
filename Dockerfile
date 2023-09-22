@@ -11,7 +11,7 @@ RUN set -eux; \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
-WORKDIR /worckspace
+WORKDIR /workspace
 
 COPY install-wp.sh /usr/local/bin/install-wp
 RUN chmod +x /usr/local/bin/install-wp
