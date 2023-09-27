@@ -6,7 +6,7 @@ DB_HOST="${DB_HOST:-db\:3306}"
 DB_NAME="${DB_NAME:-develop}"
 DB_USER="${DB_USER:-root}"
 DB_PASS="${DB_PASS:-wordpress}"
-DB_PREFIX="${DB_TEST_NAME:-wp_}"
+DB_PREFIX="${DB_PREFIX:-wp_}"
 
 DB_TEST_NAME="${DB_TEST_NAME:-wp_test}"
 
