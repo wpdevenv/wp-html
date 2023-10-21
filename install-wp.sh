@@ -122,6 +122,7 @@ install_config() {
 		sed -i "s|\"stop editing\" line. \*\/|\"stop editing\" line. \*\/ \\
 define( 'SCRIPT_DEBUG', true ); \\
 define( 'AUTOMATIC_UPDATER_DISABLED', true ); \\
+define( 'FS_METHOD', 'direct' ); \\
 		|" "$WP_CORE_DIR"/wp-config.php
 	fi
 }
