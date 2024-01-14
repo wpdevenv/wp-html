@@ -8,13 +8,18 @@ DB_USER="${DB_USER:-root}"
 DB_PASS="${DB_PASS:-wordpress}"
 DB_PREFIX="${DB_PREFIX:-wp_}"
 
-DB_TEST_NAME="${DB_TEST_NAME:-wp_test}"
+WP_EXTRA_CONFIG="${WP_EXTRA_CONFIG:-\\
+define( 'SCRIPT_DEBUG', true );\\
+define( 'AUTOMATIC_UPDATER_DISABLED', true );\\
+define( 'FS_METHOD', 'direct' );\\
+}"
+WP_CORE_DIR="${INSTALL_DIR:-html}"
 
+WP_TESTS_DIR="${WP_CORE_DIR}/tests"
+DB_TEST_NAME="${DB_TEST_NAME:-wp_test}"
 
 TMPDIR="${TMPDIR:-/tmp}"
 TMPDIR=$(echo $TMPDIR | sed -e "s/\/$//")
-WP_CORE_DIR="${INSTALL_DIR:-html}"
-WP_TESTS_DIR="${WP_CORE_DIR}/tests"
 
 download() {
     if [ `which curl` ]; then
@@ -119,11 +124,7 @@ install_config() {
 		sed -i "s|localhost|${DB_HOST}|" "$WP_CORE_DIR"/wp-config.php
 		sed -i "s|'wp_'|'${DB_PREFIX}'|" "$WP_CORE_DIR"/wp-config.php
 		sed -i "s|define( 'WP_DEBUG', false );|define( 'WP_DEBUG', true );|" "$WP_CORE_DIR"/wp-config.php
-		sed -i "s|\"stop editing\" line. \*\/|\"stop editing\" line. \*\/ \\
-define( 'SCRIPT_DEBUG', true ); \\
-define( 'AUTOMATIC_UPDATER_DISABLED', true ); \\
-define( 'FS_METHOD', 'direct' ); \\
-		|" "$WP_CORE_DIR"/wp-config.php
+		sed -i "s|\"stop editing\" line. \*\/|\"stop editing\" line. \*\/\n${WP_EXTRA_CONFIG}|" "$WP_CORE_DIR"/wp-config.php
 	fi
 }
 

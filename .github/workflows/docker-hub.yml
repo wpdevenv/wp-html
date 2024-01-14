@@ -28,4 +28,5 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: wpdevenv/wp-html:1.0
+          tags: wpdevenv/wp-html:${{ github.event.release.tag_name }}
+
