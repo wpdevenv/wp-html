@@ -94,7 +94,9 @@ install_wp() {
 		tar --strip-components=1 -zxmf $TMPDIR/wordpress.tar.gz -C $WP_CORE_DIR
 
 	fi
-	mkdir $WP_CORE_DIR/wp-content/uploads
+ 	if ! [ -d $WP_CORE_DIR/wp-content/uploads ]; then
+		mkdir $WP_CORE_DIR/wp-content/uploads
+  	fi
 }
 
 install_config() {
